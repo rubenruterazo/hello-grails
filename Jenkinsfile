@@ -11,7 +11,11 @@ pipeline {
         stage('Build') {
             steps {
                 withGradle{
-                    sh './gradlew assemble'
+                    configFileProvider(
+                        [configFile(fileId: 'hello-grails-gradle.properties')]) {
+                        sh './gradlew assemble'
+                    }
+                    
                     
                 } 
             }
