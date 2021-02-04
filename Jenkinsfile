@@ -12,7 +12,7 @@ pipeline {
             steps {
                 withGradle{
                     configFileProvider(
-                        [configFile(fileId: 'hello-grails-gradle.properties')]) {
+                        [configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
                         sh './gradlew assemble'
                     }
                     
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 withGradle{
                     configFileProvider(
-                        [configFile(fileId: 'hello-grails-gradle.properties')]) {
+                        [configFile(fileId: 'hello-grails-gradle.properties', targetLocation: 'gradle.properties')]) {
                         sh './gradlew clean test'
                         sh './gradlew iT'
                         sh './gradlew codenarcTest'
