@@ -24,9 +24,13 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle{
-                    sh './gradlew clean test'
-                    sh './gradlew -Dgeb.env=firefoxHeadless iT'
-                    sh './gradlew codenarcTest'
+                    configFileProvider(
+                        [configFile(fileId: 'hello-grails-gradle.properties')]) {
+                        sh './gradlew clean test'
+                        sh './gradlew -Dgeb.env=firefoxHeadless iT'
+                        sh './gradlew codenarcTest'
+                    }
+                    
                 }  
             }
             post {
