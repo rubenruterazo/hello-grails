@@ -55,5 +55,14 @@ pipeline {
                 }
             }
         }
+        stage('QA') {
+            steps {
+                    withSonarQubeEnv(credentialsId: 'b44d3f91-20a5-46ab-9403-1515a4bb386a', installationName: 'local') {
+                        // some block
+                        sh './gradlew sonarqube'
+                    }
+            }
+        }
+
     }
 }
